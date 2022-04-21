@@ -2,20 +2,23 @@ const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const postSchema = new Schema ({
-    userId: {
-      type: String,
+    user: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "User",
       required: true,
     },
     description: {
       type: String,
       max: 500,
+      required: true,
     },
     img: {
       type: String,
     },
     likes: {
-      type: Array,
-      default: [],
+     type:[mongoose.SchemaTypes.ObjectId],
+      ref: "User",
+     default: [],
     },
   },
   { timestamps: true }
