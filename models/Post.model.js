@@ -15,11 +15,6 @@ const postSchema = new Schema ({
     img: {
       type: String,
     },
-    likes: {
-     type:[mongoose.SchemaTypes.ObjectId],
-      ref: "User",
-     default: [],
-    },
   },
   { timestamps: true }
 );
