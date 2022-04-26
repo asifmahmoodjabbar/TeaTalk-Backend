@@ -23,7 +23,7 @@ router.put("/:id", async (req, res) => {
   if (post.user.toString() === req.jwtPayload.user._id) {
     post.description = description;
     post = await post.save();
-    res.status(200).json(post);
+    res.status(200).json("Your post has been updated");
   } else {
     res.status(400).json("unauthorized");
   }
@@ -35,7 +35,7 @@ router.delete("/:id", async (req, res) => {
   const post = await Post.findById(id);
   if (post.user.toString() === req.jwtPayload.user._id) {
     await Post.findByIdAndDelete(id);
-    res.status(200).json(post);
+    res.status(200).json("Your post has been deleted");
   } else {
     res.status(400).json("unauthorized");
   }
