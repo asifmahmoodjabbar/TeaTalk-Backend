@@ -1,4 +1,5 @@
-const User = require("../models/User.model");
+
+/*const User = require("../models/User.model");
 const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
@@ -91,3 +92,4 @@ router.put("/:id/unfollow", async (req, res) => {
   });
 
 module.exports = router;
+*/
