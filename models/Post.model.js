@@ -7,7 +7,13 @@ const postSchema = new Schema ({
       ref: "User",
       required: true,
     },
-    description: {
+    title: {
+       type: String,
+      max: 25,
+      required: true,
+
+    }, 
+    body: {
       type: String,
       max: 500,
       required: true,
@@ -21,4 +27,4 @@ const postSchema = new Schema ({
 
 const Post = model('Post', postSchema)
 
-module.exports = Post
+module.exports = Post 

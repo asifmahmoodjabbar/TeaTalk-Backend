@@ -7,9 +7,10 @@ const router = express.Router();
 
 //create a post
 router.post("/create", async (req, res) => {
-  const { description } = req.body;
+  const { title, body } = req.body;
   const post = await Post.create({
-    description,
+    title,
+    body,
     user: req.jwtPayload.user._id,
   });
   res.status(200).json(post);
@@ -18,10 +19,11 @@ router.post("/create", async (req, res) => {
 //update a post
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { description } = req.body;
+  const { title, body } = req.body;
   let post = await Post.findById(id);
   if (post.user.toString() === req.jwtPayload.user._id) {
-    post.description = description;
+    post.title = title;   
+    post.body = body;
     post = await post.save();
     res.status(200).json("Your post has been updated");
   } else {

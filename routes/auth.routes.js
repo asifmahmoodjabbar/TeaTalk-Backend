@@ -1,23 +1,38 @@
 const express = require("express");
-const User = require("../models/User.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { body } = require("express-validator");
+const User = require("../models/User.model");
 const validate = require("../middlewares/validate.middleware");
 const { authenticate } = require("../middlewares/jwt.middleware");
+
+
 
 const router = express.Router();
 
 // Create a user/signup
-router.post("/signup", async (req, res) => {
-  const { userName, email, password } = req.body;
-  const passwordHash = await bcrypt.hash(password, 10);
-  const user = await User.create({
-    userName,
-    email,
-    password: passwordHash,
-  });
-  res.send(user);
-});
+router.post(
+  "/signup",
+  validate([    
+    body("userName").isLength({ min: 2 }),
+    body("email").isEmail(),
+    body("password").isLength({ min: 6 }),
+  ]),
+  async (req, res) => {
+    const { userName, email, password } = req.body;
+    try {
+      const passwordHash = await bcrypt.hash(password, 10);
+      const user = await User.create({
+        userName,
+        email,
+        password: passwordHash,
+      });
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
+);
 
 // user login
 router.post("/login", async (req, res) => {
