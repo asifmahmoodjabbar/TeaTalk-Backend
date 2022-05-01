@@ -21,6 +21,5 @@ const userRoute = require("./routes/user.routes");
 app.use("/users", authenticate, userRoute);
 */
 const postRoute = require("./routes/post.routes");
-app.use("/posts", authenticate, postRoute);
-
+app.use("/posts", postRoute);
 app.listen(process.env.PORT);

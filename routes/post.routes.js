@@ -2,11 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Post = require("../models/Post.model");
 const User = require("../models/User.model");
+const { authenticate } = require("../middlewares/jwt.middleware");
 
 const router = express.Router();
 
 //create a post
-router.post("/create", async (req, res) => {
+router.post("/create", authenticate, async (req, res) => {
+  //authenticate,
   const { title, body } = req.body;
   const post = await Post.create({
     title,
