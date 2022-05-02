@@ -19,7 +19,7 @@ router.post("/create", authenticate, async (req, res) => {
 });
 
 //update a post
-router.put("/:id", async (req, res) => {
+router.put("/:id", authenticate, async (req, res) => {
   const { id } = req.params;
   const { title, body } = req.body;
   let post = await Post.findById(id);
@@ -34,7 +34,7 @@ router.put("/:id", async (req, res) => {
 });
 
 //delete a post
-router.delete("/:id", async (req, res) => {
+router.delete("/:id",authenticate, async (req, res) => {
   const { id } = req.params;
   const post = await Post.findById(id);
   if (post.user.toString() === req.jwtPayload.user._id) {

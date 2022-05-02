@@ -7,7 +7,7 @@ const postSchema = new Schema ({
       ref: "User",
       required: true,
     },
-    title: {
+    title: { 
        type: String,
       max: 25,
       required: true,
