@@ -84,7 +84,7 @@ router.get("/:id", async (req, res) => {
 // get all posts
 
 router.get("/", async (req, res) => {
-  const posts = await Post.find();
+  const posts = await Post.find().populate("user");
   res.status(200).json(posts);
 });
 
