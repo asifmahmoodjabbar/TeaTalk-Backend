@@ -9,13 +9,13 @@ const postSchema = new Schema ({
     },
     title: { 
        type: String,
-      max: 25,
+      max: 50,
       required: true,
 
     }, 
-    body: {
+    body: { 
       type: String,
-      max: 500,
+      max: 1000,
       required: true,
     },
     img: {
