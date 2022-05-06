@@ -60,7 +60,7 @@ router.put("/:id/like", async (req, res) => {
 */
 
 //get all owned posts
-router.get("/owned", async (req, res) => {
+router.get("/owned", authenticate, async (req, res) => {
   try {
     // find post associated with a user
     const posts = await Post.find({ user: req.jwtPayload.user._id }).populate("user");
